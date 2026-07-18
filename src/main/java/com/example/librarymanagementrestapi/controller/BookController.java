@@ -21,12 +21,12 @@ public class BookController {
     private static final Logger logger =
             LoggerFactory.getLogger(BookController.class);
 
-    public BookController(LibraryConfigProps props){
+    public BookController(LibraryConfigProps props, BookService bookService){
         this.props = props;
+        this.bookService = bookService;
     }
 
-    @Autowired
-    private BookService bookService; //bean
+    private final BookService bookService; //bean
 
     @GetMapping("/info")
     public String getLibraryInfo(){
@@ -52,9 +52,9 @@ public class BookController {
         return bookService.addBook(bookModel);
     }
     @PutMapping("/{id}")
-    public BookModel updateBookModel(@PathVariable int id,@RequestBody BookModel updatedBook){
+    public BookModel updateBook(@PathVariable int id,@RequestBody BookModel updatedBook){
         logger.info("Updating a book");
-        return bookService.updateBookModel(id, updatedBook);
+        return bookService.updateBook(id, updatedBook);
     }
     @DeleteMapping("/{id}")
     public void deleteBookById(@PathVariable int id){

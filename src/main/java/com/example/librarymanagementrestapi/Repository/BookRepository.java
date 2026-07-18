@@ -33,7 +33,7 @@ public class BookRepository {
         return book;
     }
 
-    public BookModel updateBookModel(int id, BookModel updatedBook) {
+    public BookModel updateBook(int id, BookModel updatedBook) {
         BookModel book = findBookById(id);
         if (book != null) {
             book.setTitle(updatedBook.getTitle());

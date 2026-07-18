@@ -32,7 +32,7 @@ class BookServiceTest {
                 "Psychological Thriller"
         ));
         books.add(new BookModel(
-                2,
+                3,
                 "The Days",
                 "Taha Hussein",
                 "Autobiography"
@@ -70,21 +70,21 @@ class BookServiceTest {
     }
 
     @Test
-    void ShouldUpdateBookModel(){
+    void ShouldUpdateBook(){
         BookModel updatedBook = new BookModel(
                 1,
                 "Utopia",
                 "Ahmed Khaled Tawfik",
                 "Futuristic Sci-Fi"
                 );
-        BookModel book = bookService.updateBookModel(1,updatedBook);
+        BookModel book = bookService.updateBook(1,updatedBook);
         assertEquals("Futuristic Sci-Fi",book.getCategory());
     }
 
     @Test
     void shouldDeleteBook(){
-        bookService.deleteBookById(3);
+        bookService.deleteBookById(4);
         assertEquals(3, bookService.getAllBooks().size());
-        assertNull(bookService.findBookById(3));
+        assertNull(bookService.findBookById(4));
     }
 }
