@@ -11,9 +11,8 @@
     <groupId>com.example</groupId>
     <artifactId>Library-Management-REST-API</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Library-Management-REST-API</name>
-    <description>Library-Management-REST-API</description>
-    <url/>
+    <name>Library Management System</name>
+    <description>Library Management System REST API Application</description>
     <developers>
         <developer>
             <id>mo3tasem</id>
@@ -27,7 +26,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webmvc</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -44,6 +43,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
         </dependency>
     </dependencies>
 
