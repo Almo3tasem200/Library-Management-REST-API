@@ -1,11 +1,14 @@
 package com.example.librarymanagementrestapi.cofiguration;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import org.springframework.stereotype.Component;
 
 
-
+@Setter
+@Getter
 @Component
 //Create an instance of this configuration class
 // and manage it as a Spring bean,
@@ -16,19 +19,4 @@ public class LibraryConfigProps {
     private String name;
     private int numberOfBooks;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getNumberOfBooks() {
-        return numberOfBooks;
-    }
-
-    public void setNumberOfBooks(int numberOfBooks) {
-        this.numberOfBooks = numberOfBooks;
-    }
 }

@@ -19,7 +19,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @WebMvcTest(BookController.class)
@@ -36,7 +35,7 @@ class BookControllerByWebmvcTest {
     private MockMvc mockMvc;
 
     @Test
-    void shouldCreateMockMVC(){
+    void shouldCreateMockMVC() {
         assertNotNull(mockMvc);
     }
 
@@ -53,17 +52,17 @@ class BookControllerByWebmvcTest {
 
     @Test
     void shouldGetAllBooks() throws Exception {
-        List<BookModel> books =List.of(new BookModel(
+        List<BookModel> books = List.of(new BookModel(
                 1,
                 "Utopia",
                 "Ahmed Khaled Tawfik",
                 "Dystopian"
-        ),new BookModel(
+        ), new BookModel(
                 2,
                 "The Blue Elephant",
                 "Ahmed Mourad",
                 "Psychological Thriller"
-        ),new BookModel(
+        ), new BookModel(
                 3,
                 "The Days",
                 "Taha Hussein",
@@ -78,35 +77,36 @@ class BookControllerByWebmvcTest {
     }
 
     @Test
-    void shouldFindBookById() throws Exception{
-        List<BookModel> books =List.of(new BookModel(
+    void shouldFindBookById() throws Exception {
+        List<BookModel> books = List.of(new BookModel(
                 1,
                 "Utopia",
                 "Ahmed Khaled Tawfik",
                 "Dystopian"
-        ),new BookModel(
+        ), new BookModel(
                 2,
                 "The Blue Elephant",
                 "Ahmed Mourad",
                 "Psychological Thriller"
-        ),new BookModel(
+        ), new BookModel(
                 3,
                 "The Days",
                 "Taha Hussein",
                 "Autobiography"
         ));
         BookModel book = books.stream()
-                .filter(b->b.getId() == 1)
+                .filter(b -> b.getId() == 1)
                 .findFirst().orElse(null);
         when(bookService.findBookById(1)).thenReturn(book);
 
         mockMvc.perform(get("/books/1")).andDo(print())
                 .andExpect(status().isOk());
-        verify(bookService).findBookById(1);;
+        verify(bookService).findBookById(1);
+        ;
     }
 
     @Test
-    void shouldAddBook() throws Exception{
+    void shouldAddBook() throws Exception {
         BookModel book = new BookModel(
                 4,
                 "The Cairo Trilogy",
@@ -116,15 +116,15 @@ class BookControllerByWebmvcTest {
         when(bookService.addBook(book)).thenReturn(book);
 
         mockMvc.perform(post("/books")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                          "id":4,
-                          "title":"The Cairo Trilogy",
-                          "author":"Nagib Mahfouz",
-                          "category":"Historical Fiction"
-                        }
-                        """))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "id":4,
+                                  "title":"The Cairo Trilogy",
+                                  "author":"Nagib Mahfouz",
+                                  "category":"Historical Fiction"
+                                }
+                                """))
                 .andDo(print())
                 .andExpect(status().isOk());
         verify(bookService).addBook(book);
@@ -132,32 +132,32 @@ class BookControllerByWebmvcTest {
     }
 
     @Test
-    void shouldUpdateBook() throws Exception{
+    void shouldUpdateBook() throws Exception {
         BookModel updatedBook = new BookModel(
                 1,
                 "Utopia",
                 "Ahmed Khaled Tawfik",
                 "Futuristic Sci-Fi"
         );
-        when(bookService.updateBook(1,updatedBook)).thenReturn(updatedBook);
+        when(bookService.updateBook(1, updatedBook)).thenReturn(updatedBook);
 
         mockMvc.perform(put("/books/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                          "id":1,
-                          "title":"Utopia",
-                          "author":"Ahmed Khaled Tawfik",
-                          "category":"Futuristic Sci-Fi"
-                        }
-                        """))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "id":1,
+                                  "title":"Utopia",
+                                  "author":"Ahmed Khaled Tawfik",
+                                  "category":"Futuristic Sci-Fi"
+                                }
+                                """))
                 .andDo(print())
                 .andExpect(status().isOk());
-        verify(bookService).updateBook(1,updatedBook);
+        verify(bookService).updateBook(1, updatedBook);
     }
 
     @Test
-    void shouldDeleteBookById() throws Exception{
+    void shouldDeleteBookById() throws Exception {
         doNothing().when(bookService).deleteBookById(4);
 
         mockMvc.perform(delete("/books/4")).andDo(print())

@@ -64,25 +64,25 @@ class BookServiceTest {
                 "Historical Fiction"
         );
         BookModel book = bookService.addBook(addedBook);
-        assertEquals(addedBook,book); //check if the added bock equal the returned book
+        assertEquals(addedBook, book); //check if the added bock equal the returned book
         assertEquals(4, bookService.getAllBooks().size());
         //verify that the book was actually stored in the list.
     }
 
     @Test
-    void ShouldUpdateBook(){
+    void ShouldUpdateBook() {
         BookModel updatedBook = new BookModel(
                 1,
                 "Utopia",
                 "Ahmed Khaled Tawfik",
                 "Futuristic Sci-Fi"
-                );
-        BookModel book = bookService.updateBook(1,updatedBook);
-        assertEquals("Futuristic Sci-Fi",book.getCategory());
+        );
+        BookModel book = bookService.updateBook(1, updatedBook);
+        assertEquals("Futuristic Sci-Fi", book.getCategory());
     }
 
     @Test
-    void shouldDeleteBook(){
+    void shouldDeleteBook() {
         bookService.deleteBookById(4);
         assertEquals(3, bookService.getAllBooks().size());
         assertNull(bookService.findBookById(4));

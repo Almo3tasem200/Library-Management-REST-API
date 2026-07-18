@@ -15,13 +15,13 @@ public class BookRepository {
         this.books = books;
     }
 
-    public List<BookModel> getAllBooks(){
+    public List<BookModel> getAllBooks() {
         return books;
     }
 
     public BookModel findBookById(int id) {
-        for(BookModel book: books) {
-            if(book.getId() == id){
+        for (BookModel book : books) {
+            if (book.getId() == id) {
                 return book;
             }
         }
@@ -43,7 +43,7 @@ public class BookRepository {
         return book;
     }
 
-    public void deleteBookById(int Id){
+    public void deleteBookById(int Id) {
         BookModel book = findBookById(Id);
         if (book != null) {
             books.remove(book);

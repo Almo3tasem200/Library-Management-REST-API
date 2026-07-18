@@ -21,7 +21,7 @@ public class BookController {
     private static final Logger logger =
             LoggerFactory.getLogger(BookController.class);
 
-    public BookController(LibraryConfigProps props, BookService bookService){
+    public BookController(LibraryConfigProps props, BookService bookService) {
         this.props = props;
         this.bookService = bookService;
     }
@@ -29,7 +29,7 @@ public class BookController {
     private final BookService bookService; //bean
 
     @GetMapping("/info")
-    public String getLibraryInfo(){
+    public String getLibraryInfo() {
         return props.getName() + " Contains "
                 + props.getNumberOfBooks() + " books.";
     }
@@ -51,13 +51,15 @@ public class BookController {
         logger.info("Adding a new book");
         return bookService.addBook(bookModel);
     }
+
     @PutMapping("/{id}")
-    public BookModel updateBook(@PathVariable int id,@RequestBody BookModel updatedBook){
+    public BookModel updateBook(@PathVariable int id, @RequestBody BookModel updatedBook) {
         logger.info("Updating a book");
         return bookService.updateBook(id, updatedBook);
     }
+
     @DeleteMapping("/{id}")
-    public void deleteBookById(@PathVariable int id){
+    public void deleteBookById(@PathVariable int id) {
         logger.info("Deleting a book with ID: {}", id);
         bookService.deleteBookById(id);
     }
