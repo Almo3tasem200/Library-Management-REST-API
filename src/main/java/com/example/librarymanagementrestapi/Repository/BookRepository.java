@@ -22,7 +22,7 @@ public class BookRepository {
     public BookModel findBookById(int id) {
         for(BookModel book: books) {
             if(book.getId() == id){
-                return books.get(id);
+                return book;
             }
         }
         return null;

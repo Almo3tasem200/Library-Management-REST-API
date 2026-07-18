@@ -1,6 +1,8 @@
-server:
-  port: 8082
+spring:
+  config:
+    activate:
+      on-profile: dev
 
-logging:
-  level:
-    root: DEBUG
+library:
+  name: Development Library
+  number-of-books: 10

@@ -1,12 +1,6 @@
-server:
-  port: 8081
-
 spring:
   profiles:
     active: dev
 
-library:
-  name: My Library
-  numberOfBooks: 1000
 
 

@@ -14,5 +14,4 @@ public class LibraryConfig {
     public List<BookModel> books(){
         return new ArrayList<>();
     }
-
 }

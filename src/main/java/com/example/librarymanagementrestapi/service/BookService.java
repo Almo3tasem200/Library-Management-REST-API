@@ -11,14 +11,17 @@ import java.util.List;
 @Service
 public class BookService {
 
-    @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
+
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     public List<BookModel> getAllBooks() {
         return bookRepository.getAllBooks();
     }
 
-    public BookModel findBookById(int id){
+    public BookModel findBookById(int id) {
         return bookRepository.findBookById(id);
     }
 
@@ -31,7 +34,7 @@ public class BookService {
         return bookRepository.updateBookModel(id, updatedBook);
     }
 
-    public void deleteBookById(int id){
+    public void deleteBookById(int id) {
         bookRepository.deleteBookById(id);
     }
 }

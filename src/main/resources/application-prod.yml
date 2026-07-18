@@ -1,6 +1,8 @@
-server:
-  port: 8083
+spring:
+  config:
+    activate:
+      on-profile: prod
 
-logging:
-  level:
-    root: INFO
+library:
+  name: Production Library
+  number-of-books: 100

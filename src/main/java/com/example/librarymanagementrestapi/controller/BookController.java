@@ -1,5 +1,7 @@
 package com.example.librarymanagementrestapi.controller;
 
+import com.example.librarymanagementrestapi.cofiguration.LibraryConfig;
+import com.example.librarymanagementrestapi.cofiguration.LibraryConfigProps;
 import com.example.librarymanagementrestapi.model.BookModel;
 import com.example.librarymanagementrestapi.service.BookService;
 import org.slf4j.Logger;
@@ -14,11 +16,23 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
+    private final LibraryConfigProps props;
+
     private static final Logger logger =
             LoggerFactory.getLogger(BookController.class);
 
+    public BookController(LibraryConfigProps props){
+        this.props = props;
+    }
+
     @Autowired
     private BookService bookService; //bean
+
+    @GetMapping("/info")
+    public String getLibraryInfo(){
+        return props.getName() + " Contains "
+                + props.getNumberOfBooks() + " books.";
+    }
 
     @GetMapping
     public List<BookModel> getAllBooks() {
