@@ -7,7 +7,7 @@ The project follows clean architecture principles and includes **Behavior-Driven
 
 ## 🛠️ Technologies Used
 
-- Java 25.0.3
+- Java 17
 - Spring Boot
 - Maven
 - JUnit, Mokhito and Web Layer Testing
