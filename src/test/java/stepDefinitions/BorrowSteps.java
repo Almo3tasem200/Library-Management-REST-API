@@ -44,7 +44,7 @@ public class BorrowSteps {
     @Given("a book with title {string} is available for borrowing")
     public void availableBook(String title) {
         book = bookService.findBookByTitle(title);
-        if(book == null){
+        if (book == null) {
             book = new BookModel();
             book.setId(books.size() + 1);
             book.setTitle(title);
@@ -52,15 +52,14 @@ public class BorrowSteps {
             book.setCategory("Dystopian");
             book.setAvailable(true);
             bookService.addBook(book);
-        }
-        else {
+        } else {
             book.setAvailable(true);
         }
     }
 
     @Given("the user with id {int} has borrowed less than five books")
     public void userHasLessThanFiveBorrowed(int userId) {
-        for(int i = 1; i <= 2; i++) {
+        for (int i = 1; i <= 2; i++) {
             BorrowRecord record = new BorrowRecord();
 
             record.setBookId(i);
@@ -74,7 +73,18 @@ public class BorrowSteps {
 
     @Given("the user with id {int} has less than three overdue books")
     public void userHasLessThanThreeOverdue(int userId) {
+        for (int i = 3; i <= 4; i++) {
+            BorrowRecord record = new BorrowRecord();
 
+            record.setBookId(i);
+            record.setUserId(userId);
+            record.setBorrowDate(LocalDate.now().minusDays(30));
+            record.setDueDate(LocalDate.now().minusDays(15));
+            record.setReturnDate(null);
+            record.setStatus("Overdue");
+
+            borrowRepository.addBorrowedBook(record);
+        }
     }
 
     @When("the user with id {int} borrows a book with title {string}")
@@ -127,10 +137,12 @@ public class BorrowSteps {
 
         book.setAvailable(false);
     }
+
     @Then("the system should return error")
     public void systemShouldReturnError() {
         Assertions.assertNotNull(exception);
     }
+
     @Then("error message should be {string}")
     public void errorMessageShouldBe(String message) {
         Assertions.assertNotNull(exception);

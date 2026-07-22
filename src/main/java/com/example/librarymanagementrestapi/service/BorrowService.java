@@ -23,7 +23,8 @@ public class BorrowService {
 
         this.borrowRepository = borrowRepository;
     }
-    public void borrowBook(int bookId, int userId){
+
+    public void borrowBook(int bookId, int userId) {
 
 
         // - Check if the user is blocked
@@ -34,7 +35,7 @@ public class BorrowService {
         }
         // -Check First if the book is Exist
         BookModel book = bookRepository.findBookById(bookId);
-        if(book == null){
+        if (book == null) {
             throw new IllegalArgumentException("Book not found with the provided ID.");
         }
         bookOverdue();
@@ -44,8 +45,8 @@ public class BorrowService {
         }
 
         // Check if the user has fewer than 5 active borrowed books
-        long borrowedBooks =  borrowRepository.getAllBorrowedRecords().stream()
-                .filter(bookBorrowed -> bookBorrowed.getUserId()== userId)
+        long borrowedBooks = borrowRepository.getAllBorrowedRecords().stream()
+                .filter(bookBorrowed -> bookBorrowed.getUserId() == userId)
                 .filter(bookBorrowed -> bookBorrowed.getStatus().equals("Borrowed"))
                 .count();
         if (borrowedBooks >= 5) {
@@ -53,7 +54,7 @@ public class BorrowService {
         }
         //Check if the user has 3 or more overdue books; if yes, block the borrow.
         long overdueBooks = borrowRepository.getAllBorrowedRecords().stream()
-                .filter(bookBorrowed -> bookBorrowed.getUserId()== userId)
+                .filter(bookBorrowed -> bookBorrowed.getUserId() == userId)
                 .filter(bookBorrowed -> bookBorrowed.getStatus().equals("Overdue"))
                 .count();
         if (overdueBooks >= 3) {
@@ -72,10 +73,11 @@ public class BorrowService {
         book.setAvailable(false);
         borrowRepository.addBorrowedBook(borrowRecord);
     }
-    public void returnBook(int bookId, int userId){
+
+    public void returnBook(int bookId, int userId) {
         BookModel book = bookRepository.findBookById(bookId);
 
-        if (book == null){
+        if (book == null) {
             throw new IllegalArgumentException("Book with this id not found.");
         }
         BorrowRecord borrowRecord = borrowRepository.getAllBorrowedRecords()
@@ -93,7 +95,8 @@ public class BorrowService {
         // Make the book available again
         book.setAvailable(true);
     }
-    public void bookOverdue(){
+
+    public void bookOverdue() {
         LocalDate today = LocalDate.now();
 
         borrowRepository.getAllBorrowedRecords()
@@ -102,7 +105,8 @@ public class BorrowService {
                 .filter(borrowRecord -> today.isAfter(borrowRecord.getDueDate()))
                 .forEach(borrowRecord -> borrowRecord.setStatus("Overdue"));
     }
-    public boolean isUserBlocked(int userId){
+
+    public boolean isUserBlocked(int userId) {
         return blockedUsers.contains(userId);
     }
 }

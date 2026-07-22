@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Data
 public class BorrowRecord {
-    private int borrowId ;//(unique identifier)
+    private int borrowId;//(unique identifier)
     private int bookId; //(reference to Book)
     private int userId; //borrower id
     private LocalDate borrowDate; //(date when the book was borrowed)

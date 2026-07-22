@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public class BookRepository {
     private final List<BookModel> books;
+
     public BookRepository(List<BookModel> books) {
         this.books = books;
     }
@@ -25,7 +26,8 @@ public class BookRepository {
         }
         return null;
     }
-    public BookModel findBookByTitle(String title){
+
+    public BookModel findBookByTitle(String title) {
         return books.stream()
                 .filter(book -> book.getTitle().equals(title))
                 .findFirst()

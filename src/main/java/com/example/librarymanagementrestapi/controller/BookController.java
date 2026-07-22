@@ -43,6 +43,7 @@ public class BookController {
         logger.info("Fetching book data for ID: {}", id);
         return bookService.findBookById(id);
     }
+
     @GetMapping("/title/{title}")
     public BookModel findBookByTitle(@PathVariable String title) {
         logger.info("Fetching book data for title: {}", title);

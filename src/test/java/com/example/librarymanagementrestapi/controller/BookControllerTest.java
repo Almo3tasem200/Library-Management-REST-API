@@ -90,6 +90,7 @@ class BookControllerTest {
         assertEquals(book, bookFound);
         verify(bookService).findBookById(1);
     }
+
     @Test
     void shouldFindBookByTitle() {
         List<BookModel> books = List.of(new BookModel(

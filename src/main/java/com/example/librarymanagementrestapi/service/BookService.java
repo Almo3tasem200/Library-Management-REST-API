@@ -27,7 +27,7 @@ public class BookService {
 
 
     public BookModel addBook(BookModel book) {
-        if(bookRepository.findBookByTitle(book.getTitle()) != null){
+        if (bookRepository.findBookByTitle(book.getTitle()) != null) {
             throw new IllegalArgumentException("This book with title '" + book.getTitle() + "' already exists");
         }
         return bookRepository.addBook(book);
@@ -42,7 +42,7 @@ public class BookService {
         bookRepository.deleteBookById(id);
     }
 
-    public BookModel findBookByTitle(String title){
+    public BookModel findBookByTitle(String title) {
         return bookRepository.findBookByTitle(title);
     }
 }
