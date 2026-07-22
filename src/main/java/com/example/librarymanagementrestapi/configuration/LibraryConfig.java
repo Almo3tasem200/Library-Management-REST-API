@@ -1,4 +1,4 @@
-package com.example.librarymanagementrestapi.cofiguration;
+package com.example.librarymanagementrestapi.configuration;
 
 import com.example.librarymanagementrestapi.model.BookModel;
 import org.springframework.context.annotation.Bean;

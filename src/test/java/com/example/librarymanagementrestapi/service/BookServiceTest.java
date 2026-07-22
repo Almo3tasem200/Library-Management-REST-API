@@ -54,6 +54,12 @@ class BookServiceTest {
         assertNotNull(requiredBook);
         assertEquals("Ahmed Mourad", requiredBook.getAuthor());
     }
+    @Test
+    void shouldFindBookByTitle() {
+        BookModel requiredBook = bookService.findBookByTitle("The Blue Elephant");
+        assertNotNull(requiredBook);
+        assertEquals("Ahmed Mourad", requiredBook.getAuthor());
+    }
 
     @Test
     void shouldAddBook() {

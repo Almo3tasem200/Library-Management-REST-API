@@ -1,4 +1,4 @@
-package com.example.librarymanagementrestapi.cofiguration;
+package com.example.librarymanagementrestapi.configuration;
 
 import lombok.Getter;
 import lombok.Setter;

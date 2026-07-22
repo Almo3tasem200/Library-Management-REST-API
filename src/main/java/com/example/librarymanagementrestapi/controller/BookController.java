@@ -1,12 +1,10 @@
 package com.example.librarymanagementrestapi.controller;
 
-import com.example.librarymanagementrestapi.cofiguration.LibraryConfig;
-import com.example.librarymanagementrestapi.cofiguration.LibraryConfigProps;
+import com.example.librarymanagementrestapi.configuration.LibraryConfigProps;
 import com.example.librarymanagementrestapi.model.BookModel;
 import com.example.librarymanagementrestapi.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,10 +38,15 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("id/{id}")
     public BookModel findBookById(@PathVariable int id) {
         logger.info("Fetching book data for ID: {}", id);
         return bookService.findBookById(id);
+    }
+    @GetMapping("/title/{title}")
+    public BookModel findBookByTitle(@PathVariable String title) {
+        logger.info("Fetching book data for title: {}", title);
+        return bookService.findBookByTitle(title);
     }
 
     @PostMapping

@@ -1,6 +1,6 @@
 package com.example.librarymanagementrestapi.controller;
 
-import com.example.librarymanagementrestapi.cofiguration.LibraryConfigProps;
+import com.example.librarymanagementrestapi.configuration.LibraryConfigProps;
 import com.example.librarymanagementrestapi.model.BookModel;
 import com.example.librarymanagementrestapi.service.BookService;
 import org.junit.jupiter.api.Test;
@@ -99,9 +99,38 @@ class BookControllerByWebmvcTest {
                 .findFirst().orElse(null);
         when(bookService.findBookById(1)).thenReturn(book);
 
-        mockMvc.perform(get("/books/1")).andDo(print())
+        mockMvc.perform(get("/books/id/1")).andDo(print())
                 .andExpect(status().isOk());
         verify(bookService).findBookById(1);
+        ;
+    }
+
+    @Test
+    void shouldFindBookByTitle() throws Exception {
+        List<BookModel> books = List.of(new BookModel(
+                1,
+                "Utopia",
+                "Ahmed Khaled Tawfik",
+                "Dystopian"
+        ), new BookModel(
+                2,
+                "The Blue Elephant",
+                "Ahmed Mourad",
+                "Psychological Thriller"
+        ), new BookModel(
+                3,
+                "The Days",
+                "Taha Hussein",
+                "Autobiography"
+        ));
+        BookModel book = books.stream()
+                .filter(b -> b.getTitle().equals("Utopia"))
+                .findFirst().orElse(null);
+        when(bookService.findBookByTitle("Utopia")).thenReturn(book);
+
+        mockMvc.perform(get("/books/title/Utopia")).andDo(print())
+                .andExpect(status().isOk());
+        verify(bookService).findBookByTitle("Utopia");
         ;
     }
 

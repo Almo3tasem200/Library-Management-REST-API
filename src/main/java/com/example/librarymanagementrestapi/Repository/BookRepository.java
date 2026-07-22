@@ -1,16 +1,14 @@
 package com.example.librarymanagementrestapi.Repository;
 
 import com.example.librarymanagementrestapi.model.BookModel;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class BookRepository {
     private final List<BookModel> books;
-
     public BookRepository(List<BookModel> books) {
         this.books = books;
     }
@@ -27,6 +25,13 @@ public class BookRepository {
         }
         return null;
     }
+    public BookModel findBookByTitle(String title){
+        return books.stream()
+                .filter(book -> book.getTitle().equals(title))
+                .findFirst()
+                .orElse(null);
+    }
+
 
     public BookModel addBook(BookModel book) {
         books.add(book);
@@ -43,10 +48,18 @@ public class BookRepository {
         return book;
     }
 
-    public void deleteBookById(int Id) {
-        BookModel book = findBookById(Id);
-        if (book != null) {
-            books.remove(book);
+    public void deleteBookById(int id) {
+        BookModel book = findBookById(id);
+
+        if (book == null) {
+            // If the book doesn't exist, do nothing (deleting a non-existing id is a no-op)
+            return;
         }
+
+        if (!book.isAvailable()) {
+            throw new IllegalArgumentException("This book with title '" + book.getTitle() + "' is currently borrowed");
+        }
+
+        books.remove(book);
     }
 }

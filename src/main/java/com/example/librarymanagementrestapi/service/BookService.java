@@ -2,6 +2,7 @@ package com.example.librarymanagementrestapi.service;
 
 import com.example.librarymanagementrestapi.Repository.BookRepository;
 import com.example.librarymanagementrestapi.model.BookModel;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +27,9 @@ public class BookService {
 
 
     public BookModel addBook(BookModel book) {
+        if(bookRepository.findBookByTitle(book.getTitle()) != null){
+            throw new IllegalArgumentException("This book with title '" + book.getTitle() + "' already exists");
+        }
         return bookRepository.addBook(book);
     }
 
@@ -33,7 +37,12 @@ public class BookService {
         return bookRepository.updateBook(id, updatedBook);
     }
 
+
     public void deleteBookById(int id) {
         bookRepository.deleteBookById(id);
+    }
+
+    public BookModel findBookByTitle(String title){
+        return bookRepository.findBookByTitle(title);
     }
 }
