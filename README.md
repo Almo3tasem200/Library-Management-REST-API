@@ -1,11 +1,11 @@
-# 📚 Library Management System
+# Library Management System
 
 A RESTful Library Management System built with **Java** and **Spring Boot** that allows users to manage books and borrowing operations.
 The project follows clean architecture principles and includes **Behavior-Driven Development (BDD)** tests using **Cucumber**.
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - Java 17
 - Spring Boot
@@ -17,7 +17,7 @@ The project follows clean architecture principles and includes **Behavior-Driven
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 src
@@ -46,7 +46,7 @@ src
 
 ---
 
-## ▶️ Running the Project
+## Running the Project
 
 ### Clone the repository
 
@@ -79,7 +79,7 @@ http://localhost:8080
 ```
 
 
-## 🧪 Testing
+## Testing
 
 The project uses
 • **JUnit**
@@ -97,7 +97,7 @@ mvn test
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Almoatasem Elemam**
 
@@ -105,6 +105,6 @@ Computer Engineer | Software Developer
 
 ---
 
-## 📄 License
+## License
 
 This project is intended for educational and learning purposes.
